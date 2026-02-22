@@ -28,11 +28,52 @@ WHERE BEDROOMS > 2
 ;
 
 --5. How many properties have 2 or more bathrooms?
+
+SELECT Count (*) AS Prop_with_2_or_more_bathrooms
+FROM [Property24].[dbo].[1770794941712_property24]
+WHERE BATHROOMS >= 2
+;
+
 --6. How many properties have parking for at least 2 cars?
+
+SELECT Count (*) AS parking_for_at_least_2_cars
+FROM [Property24].[dbo].[1770794941712_property24]
+WHERE PARKING >= 2
+;
+
 --7. How many properties are priced above R3,000,000?
+
+SELECT Count (*) AS price_above_R3000000
+FROM [Property24].[dbo].[1770794941712_property24]
+WHERE PROPERTY_PRICE > 3000000
+;
+
 --8. How many properties are in Gauteng?
+
+SELECT *
+FROM [Property24].[dbo].[1770794941712_property24]
+
+SELECT PROVINCE , count(PROPERTY_ID) AS num_of_property_in_gauteng
+FROM [Property24].[dbo].[1770794941712_property24]
+where PROVINCE = 'gauteng'
+Group by PROVINCE
+;
+
 --9. How many properties per province have floor size greater than 200?
+
+SELECT PROVINCE ,
+count(PROPERTY_ID) AS num_of_property_with_floor_size_greater_than_200
+FROM [Property24].[dbo].[1770794941712_property24]
+where FLOOR_SIZE > 200
+Group by PROVINCE
+;
+
 --10. How many distinct provinces are in the table?
+
+SELECT COUNT(DISTINCT PROVINCE) AS num_of_distinct_provinces
+FROM [Property24].[dbo].[1770794941712_property24]
+;
+
 --SECTION 2 – SUM Aggregations (10 Questions)
 --11. What is the total value of all properties combined?
 --12. What is the total property value per province?

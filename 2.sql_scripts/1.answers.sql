@@ -75,16 +75,82 @@ FROM [Property24].[dbo].[1770794941712_property24]
 ;
 
 --SECTION 2 – SUM Aggregations (10 Questions)
+
 --11. What is the total value of all properties combined?
+
+SELECT SUM(CAST(PROPERTY_PRICE AS BIGINT))  AS property_value_combined
+FROM [Property24].[dbo].[1770794941712_property24]
+;
+
 --12. What is the total property value per province?
+
+SELECT Province , SUM(CAST(PROPERTY_PRICE AS BIGINT))  AS property_value_combined
+FROM [Property24].[dbo].[1770794941712_property24]
+group by PROVINCE
+;
+
 --13. What is the total property value per city?
+
+SELECT CITY,
+SUM(CAST(PROPERTY_PRICE AS BIGINT))  AS property_value_combined
+FROM [Property24].[dbo].[1770794941712_property24]
+GROUP BY CITY
+;
+
 --14. What is the total monthly repayment for all properties?
+
+SELECT 
+SUM(CAST(Monthly_Repayment AS BIGINT))  AS total_monthly_repayment_for_all_props
+FROM [Property24].[dbo].[1770794941712_property24]
+;
+
 --15. What is the total monthly repayment per province?
+
+SELECT Province ,
+SUM(CAST(Monthly_Repayment AS BIGINT))  AS total_monthly_repayment_per_province
+FROM [Property24].[dbo].[1770794941712_property24]
+GROUP BY PROVINCE
+;
+
 --16. What is the total once-off cost for all properties?
+
+SELECT
+SUM(CAST(Total_Once_off_Costs AS BIGINT))  AS total_once_off_cost_for_all_properties
+FROM [Property24].[dbo].[1770794941712_property24]
+;
+
 --17. What is the total once-off cost per province?
+
+SELECT PROVINCE , 
+SUM(CAST(Total_Once_off_Costs AS BIGINT))  AS total_once_off_cost_per_province
+FROM [Property24].[dbo].[1770794941712_property24]
+GROUP BY PROVINCE
+;
+
 --18. What is the total property value for Gauteng?
+
+SELECT PROVINCE,
+SUM(CAST(PROPERTY_PRICE AS BIGINT)) AS total_property_value_for_Gauteng
+FROM Property24.dbo.[1770794941712_property24]
+WHERE PROVINCE = 'Gauteng'
+GROUP BY PROVINCE
+;
+
 --19. What is the total property value for properties priced above R4,000,000?
+
+SELECT SUM(CAST (Property_price AS BIGINT)) AS total_property_value
+FROM Property24.dbo.[1770794941712_property24]
+WHERE PROPERTY_PRICE > 4000000
+;
+
 --20. What is the total minimum gross monthly income required per province?
+
+SELECT PROVINCE,
+SUM(CAST(Min_gross_monthly_income AS BIGINT)) AS total_min_gross_monthly_income
+FROM Property24.dbo.[1770794941712_property24]
+GROUP BY PROVINCE
+;
+
 --SECTION 3 – AVG Aggregations (10 Questions)
 --21. What is the average property price overall?
 --22. What is the average property price per province?

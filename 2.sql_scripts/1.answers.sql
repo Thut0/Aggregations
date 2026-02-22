@@ -152,16 +152,85 @@ GROUP BY PROVINCE
 ;
 
 --SECTION 3 – AVG Aggregations (10 Questions)
+
 --21. What is the average property price overall?
+
+SELECT AVG(CAST(PROPERTY_PRICE AS DECIMAL(18,2))) AS avg_property_price
+FROM Property24.dbo.[1770794941712_property24]
+;
+
 --22. What is the average property price per province?
+
+SELECT PROVINCE,
+AVG(CAST(PROPERTY_PRICE AS DECIMAL(18,2))) AS avg_property_price_per_province
+FROM Property24.dbo.[1770794941712_property24]
+GROUP BY PROVINCE
+;
+
 --23. What is the average property price per city?
+
+SELECT CITY,
+AVG(CAST(PROPERTY_PRICE AS DECIMAL(18,2))) AS avg_property_price_per_city
+FROM Property24.dbo.[1770794941712_property24]
+GROUP BY CITY
+;
+
 --24. What is the average number of bedrooms per province?
+
+SELECT PROVINCE,
+AVG(CAST(BEDROOMS AS BIGINT)) AS avg_num_of_bedrooms
+FROM Property24.dbo.[1770794941712_property24]
+GROUP BY PROVINCE
+;
+
 --25. What is the average number of bathrooms per province?
+
+SELECT PROVINCE,
+AVG(CAST(BATHROOMS AS BIGINT)) AS avg_num_of_bathrooms_per_province
+FROM Property24.dbo.[1770794941712_property24]
+GROUP BY PROVINCE
+;
+
 --26. What is the average floor size per province?
+
+SELECT PROVINCE,
+AVG(CAST(FLOOR_SIZE AS BIGINT)) AS avg_floor_size_per_province
+FROM Property24.dbo.[1770794941712_property24]
+GROUP BY PROVINCE
+;
+
 --27. What is the average monthly repayment per province?
+
+SELECT PROVINCE,
+AVG(CAST(Monthly_Repayment AS BIGINT)) AS avg_monthly_repayment_per_province
+FROM Property24.dbo.[1770794941712_property24]
+GROUP BY PROVINCE
+;
+
 --28. What is the average once-off cost per province?
+
+SELECT PROVINCE,
+AVG(CAST(Total_Once_off_Costs AS BIGINT)) AS avg_once_off_cost_per_province
+FROM Property24.dbo.[1770794941712_property24]
+GROUP BY PROVINCE
+;
+
 --29. What is the average minimum gross monthly income per province?
+
+SELECT PROVINCE,
+AVG(CAST(Min_Gross_Monthly_Income AS BIGINT)) AS avg_min_gross_monthly_income_per_province
+FROM Property24.dbo.[1770794941712_property24]
+GROUP BY PROVINCE
+;
+
 --30. What is the average property price for properties above R3,000,000?
+
+SELECT 
+AVG(CAST(PROPERTY_PRICE AS BIGINT)) AS avg_property_price
+FROM Property24.dbo.[1770794941712_property24]
+WHERE PROPERTY_PRICE > 3000000
+;
+
 --SECTION 4 – GROUP BY + Filtering (10 Questions)
 --31. Which province has the highest average property price?
 --32. Which province has the lowest average property price?

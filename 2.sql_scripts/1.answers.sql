@@ -233,12 +233,91 @@ WHERE PROPERTY_PRICE > 3000000
 
 --SECTION 4 – GROUP BY + Filtering (10 Questions)
 --31. Which province has the highest average property price?
+
+SELECT TOP 1 (PROVINCE),
+AVG(CAST(PROPERTY_PRICE AS BIGINT)) AS avg_property_price
+FROM Property24.dbo.[1770794941712_property24]
+GROUP BY PROVINCE
+ORDER BY avg_property_price desc
+;
+
 --32. Which province has the lowest average property price?
+
+SELECT TOP 1 (PROVINCE),
+AVG(CAST(PROPERTY_PRICE AS BIGINT)) AS avg_property_price
+FROM Property24.dbo.[1770794941712_property24]
+GROUP BY PROVINCE
+ORDER BY avg_property_price asc
+;
+
 --33. Which city has the highest total property value?
+
+SELECT TOP 1 CITY,
+SUM(CAST(PROPERTY_PRICE AS BIGINT)) AS total_property_value
+FROM Property24.dbo.[1770794941712_property24]
+GROUP BY CITY
+ORDER BY total_property_value desc
+;
+
 --34. Which city has the lowest average property price?
+
+SELECT TOP 1 CITY,
+AVG(CAST(PROPERTY_PRICE AS BIGINT)) AS avg_property_price
+FROM Property24.dbo.[1770794941712_property24]
+GROUP BY CITY
+ORDER BY avg_property_price asc
+;
+
 --35. How many properties per province are priced above R2,000,000?
+
+SELECT PROVINCE,
+COUNT(Property_ID) as num_of_property_priced_above_2000000
+FROM Property24.dbo.[1770794941712_property24]
+WHERE PROPERTY_PRICE > 2000000
+GROUP BY PROVINCE
+;
+
 --36. What is the average floor size per province for properties above R3,000,000?
+
+SELECT PROVINCE,
+AVG(FLOOR_SIZE) as avg_floor_size_per_province
+FROM Property24.dbo.[1770794941712_property24]
+WHERE PROPERTY_PRICE > 3000000
+GROUP BY PROVINCE
+;
+
 --37. What is the total property value per province for properties with 3 or more bedrooms?
+
+SELECT PROVINCE,
+SUM(CAST(PROPERTY_PRICE AS BIGINT)) as total_property_value_per_province
+FROM Property24.dbo.[1770794941712_property24]
+WHERE BEDROOMS >= 3
+GROUP BY PROVINCE
+;
+
 --38. What is the average monthly repayment per province for properties above R4,000,000?
+
+SELECT PROVINCE,
+AVG(Monthly_Repayment) as avg_monthly_repayment_per_province
+FROM Property24.dbo.[1770794941712_property24]
+WHERE PROPERTY_PRICE > 4000000
+GROUP BY PROVINCE
+;
+
 --39. How many properties per city have parking for 2 or more cars?
+
+SELECT CITY,
+COUNT(PROPERTY_ID) as num_of_properties_per_city_with_2_or_more_parking
+FROM Property24.dbo.[1770794941712_property24]
+WHERE PARKING >= 2
+GROUP BY CITY
+;
+
 --40. What is the average minimum gross monthly income per province for properties above R5,000,000?
+
+SELECT PROVINCE,
+AVG(Min_Gross_Monthly_Income) as avg_min_gross_monthly_income
+FROM Property24.dbo.[1770794941712_property24]
+WHERE PROPERTY_PRICE > 5000000
+GROUP BY PROVINCE
+;
